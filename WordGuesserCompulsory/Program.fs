@@ -66,7 +66,8 @@ let rec play word used nrOfGuesses =
       if word |> String.exists ((=) guess)
       then play word used nrOfGuesses
       else play word used (nrOfGuesses+1)
-      printfn "" 
+      printfn "%A" used.Length 
+      printf " guesses"
       
 
   
