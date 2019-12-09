@@ -58,12 +58,17 @@ let rec play word used nrOfGuesses =
    
    else
       let guess = getGuess used
-      printfn "Guesses tried %A" used
+      
+      //let numberofguesses = nrOfGuesses+1
+      //printfn "Number of wrong guesses %A" numberofguesses
       let used = guess::used
+      printfn "Guesses tried %A" used
       if word |> String.exists ((=) guess)
       then play word used nrOfGuesses
       else play word used (nrOfGuesses+1)
-      printfn "You have guessed %A" used.Length
+      printfn "" 
+      
+
   
 
     
