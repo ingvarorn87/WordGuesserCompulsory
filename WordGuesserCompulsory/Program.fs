@@ -4,12 +4,12 @@
 open System
 open Configuration
 
-
+let mutable hiddenCharacter = Configuration.HIDDEN
 
 //Replaces the random word with a '*' for each character
 let toPartialWord (word:string) (used:char seq) =
    word |> String.map (fun c -> 
-      if Seq.exists ((=) c) used then c else '*'
+      if Seq.exists ((=) c) used then c else hiddenCharacter
    )
 
 //Checks if the guess is valid, as is only takes in chars, does not take numbers or spaces
