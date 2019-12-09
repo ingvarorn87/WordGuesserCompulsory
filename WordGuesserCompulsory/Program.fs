@@ -11,6 +11,17 @@ let mutable hiddenCharacter = Configuration.HIDDEN
 
 let mutable case_sensitive = Configuration.CASE_SENSITIVE
 
+let mutable help = Configuration.HELP
+
+let mutable allow_Blanks = Configuration.ALLOW_BLANKS
+
+let mutable multiple = Configuration.MULTIPLE
+
+//Gets the list of words from the configuration module
+let mutable listOfWords = Configuration.WORDS
+
+
+
 
 //Replaces the random word with a '*' for each character
 let toPartialWord (word:string) (used:char seq) =
@@ -47,19 +58,18 @@ let rec play word used nrOfGuesses =
    
    else
       let guess = getGuess used
+      printfn "Guesses tried %A" used
       let used = guess::used
       if word |> String.exists ((=) guess)
       then play word used nrOfGuesses
       else play word used (nrOfGuesses+1)
-
-      let totalGuesses = nrOfGuesses + used.Length
-      printfn "%A" totalGuesses
+      printfn "You have guessed %A" used.Length
   
 
     
 
-//Gets the list of words from the configuration module
-let mutable listOfWords = Configuration.WORDS
+
+
 let word = listOfWords.[Random().Next(listOfWords.Length)]
 printfn "Welcome to Word Guesser"
 printfn "The length of the word is %A" word.Length
