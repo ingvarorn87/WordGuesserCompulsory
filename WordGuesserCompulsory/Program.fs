@@ -31,25 +31,28 @@ let getGuess used =
 
 //checks the guess to the Partialword and the randomword. 
 //if the guess is correct the word' is changed and written
-//if the word(full word) is equal to the word(partial) the 
-let rec play word used tally =
+//if the word(full word) is equal to the word(partial) the if statement closes
+//else it adds the guess to the "used list" and add 1 to the tally of incorrect guesses
+let rec play word used nrOfGuesses =
    let word' = toPartialWord word used
    Console.WriteLine(word')
    if word = word' then 
-    Console.WriteLine("Correct")
+    Console.WriteLine("Correct, you guessed the word in :")
    
    else
       let guess = getGuess used
       let used = guess::used
       if word |> String.exists ((=) guess)
-      then play word used tally
-      else play word used (tally+1)
-      let totalGuesses = used.Length
-      Console.WriteLine(totalGuesses)
+      then play word used nrOfGuesses
+      else play word used (nrOfGuesses+1)
+
+      let totalGuesses = nrOfGuesses + used.Length
+      Console.Write(totalGuesses)
+      Console.Write(" guesses")
 
     
 
-
+//Gets the list of words from the configuration module
 let mutable listOfWords = Configuration.WORDS
 let word = listOfWords.[Random().Next(listOfWords.Length)]
 do play word [] 0
