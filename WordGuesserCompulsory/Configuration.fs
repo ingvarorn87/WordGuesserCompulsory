@@ -4,7 +4,7 @@ open System
 module Configuration =
     let HIDDEN = '*';  //Hidden Characters
 
-    let CASE_SENSITIVE = false;  //Make the guesses no be Case sensitive
+    let CASE_SENSITIVE = false;  //Make the guesses Case sensitive
 
     let ALLOW_BLANKS = false;  //Allow Blank is diabled
 

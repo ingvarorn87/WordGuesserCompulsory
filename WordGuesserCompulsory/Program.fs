@@ -4,7 +4,13 @@
 open System
 open Configuration
 
+
+
+//Fetches the Hidden char from the Configuration module
 let mutable hiddenCharacter = Configuration.HIDDEN
+
+let mutable case_sensitive = Configuration.CASE_SENSITIVE
+
 
 //Replaces the random word with a '*' for each character
 let toPartialWord (word:string) (used:char seq) =
@@ -47,12 +53,14 @@ let rec play word used nrOfGuesses =
       else play word used (nrOfGuesses+1)
 
       let totalGuesses = nrOfGuesses + used.Length
-      Console.Write(totalGuesses)
-      Console.Write(" guesses")
+      printfn "%A" totalGuesses
+  
 
     
 
 //Gets the list of words from the configuration module
 let mutable listOfWords = Configuration.WORDS
 let word = listOfWords.[Random().Next(listOfWords.Length)]
+printfn "Welcome to Word Guesser"
+printfn "The length of the word is %A" word.Length
 do play word [] 0
